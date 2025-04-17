@@ -13,8 +13,8 @@ All three approaches aim to evaluate different ways of interpreting the same dat
 ## Dataset
 
 - Source: UCI Wine Quality Dataset
-- File used: `winequality-red.csv`
-- Target: `quality` (integer from 3 to 8)
+- File used: `winequality-red.csv` (https://www.kaggle.com/datasets/yasserh/wine-quality-dataset/data)
+- Target: `quality`
 - Features: 11 physicochemical test results per wine (e.g., alcohol, pH, sulphates)
 
 ## Methodology Overview
@@ -22,7 +22,6 @@ All three approaches aim to evaluate different ways of interpreting the same dat
 Across the three approaches, the general process followed was:
 
 1. **Data Cleaning & Preprocessing**
-   - Removed duplicates and cleaned column names
    - Encoded target variables according to task-specific labels
 2. **Exploratory Data Analysis (EDA)**
    - Checked class distributions
@@ -97,7 +96,7 @@ SMOTE produced better generalization across rare and common classes, especially 
 ### [Teammate Name – Ternary Classification]
 
 
-### Ayushmaan Kumar Yadav – Multi-class Classification (3 to 8)
+### Ayushmaan Kumar Yadav (33.3%) – Multi-class Classification (3 to 8)
 - Framed and implemented the multi-class classification task for predicting wine quality scores (3 to 8)
 - Applied SMOTE and random oversampling techniques for class balancing
 - Trained and evaluated XGBoost classifiers
