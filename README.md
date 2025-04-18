@@ -67,7 +67,8 @@ After retraining the models on the SMOTE-balanced data, I observed a significant
 | Imbalanced Data (Baseline) | ~83.00%                  | Lower for minority classes | Moderate     |
 | SMOTE (Final Model)        | **86.60%**                | Improved                  | Balanced     |
 
-#### Key Insights
+## Key Insights
+
 - Using three quality categories ("not good", "average", and "good") provided a more nuanced and realistic view of wine quality distribution compared to a simple binary classification (e.g., "good" vs. "not good").
 - A binary approach might simplify the modeling process and boost headline accuracy, but it would also result in **loss of valuable granularity**, especially in distinguishing borderline wines (typically the “average” class).
 - Training and testing on three categories helped highlight **class imbalance issues**, which were critical to solve using techniques like **SMOTE**. These problems would be hidden in a binary setup.
