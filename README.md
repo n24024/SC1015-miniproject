@@ -4,8 +4,8 @@
 
 This project explores different ways to predict **wine quality** using physicochemical properties of red wine. The original dataset contains integer quality scores ranging from **3 to 8**. Each team member framed a unique machine learning problem based on this dataset:
 
-- **Approach 1**: Frame the task as a **binary classification** — classifying wine as either "Good" or "Not Good"
-- **Approach 2**: Frame the task as a **3-class classification** — "Bad", "Average", and "Good" wines
+- **Approach 1 (Diego)**: Frame the task as a **binary classification** — classifying wine as either "Good" or "Not Good"
+- **Approach 2 (Huajia)**: Frame the task as a **3-class classification** — "Bad", "Average", and "Good" wines
 - **Approach 3 (Ayushmaan)**: Predict the **exact wine quality score (3–8)** as a multi-class classification problem
 
 All three approaches aim to evaluate different ways of interpreting the same data and determining which model setup offers the best generalization and interpretability.
@@ -41,7 +41,38 @@ Across the three approaches, the general process followed was:
 
 ### Approach 1
 
-### Approach 2
+### Approach 2 - Multi-class Classification ("Not Good", "Average", and "Good")
+Explored red wine quality prediction as a multi-class classification problem, where each wine sample was categorized into three quality levels: 
+- Not good
+- Average
+- Good
+
+#### Step 1: Exploratory Data Analysis (EDA)
+I first started by exploring the red wine dataset as a multi-class classification problem, where I grouped wine samples into three categories: **not good, average, and good**, based on their quality scores. I examined the distribution of each feature and the class labels, and discovered a clear class imbalance, with most samples labeled as “average.” Through visualizations like histograms, boxplots, and correlation matrices, I identified **alcohol, volatile acidity**, and **sulphates** as the most important features affecting wine quality.
+
+#### Step 2: Baseline Classification with Imbalanced Data
+Then, I built a baseline using Trained Random Forest and XGBoost classifiers on the original (imbalanced) dataset:
+- Achieved decent accuracy **(~83%)** but performance was skewed toward the majority class ("average")
+- Minority classes ("not good" and "good") had **lower recall** and **F1-scores**
+- Indicated a need to address class imbalance for fairer predictions
+
+#### Step 3: SMOTE (Synthetic Minority Oversampling Technique)
+To tackle this, I applied **SMOTE** (Synthetic Minority Oversampling Technique) to generate synthetic samples for the minority classes in the training set. Unlike random oversampling, SMOTE creates more diverse data points, reducing overfitting and improving generalization.
+
+#### Step 4: Final Model Evaluation
+After retraining the models on the SMOTE-balanced data, I observed a significant improvement in performance. The final XGBoost model achieved an accuracy of **86.6%** on the test set, with more balanced precision, recall, and F1-scores across all three quality categories. The confusion matrix confirmed that the model was no longer biased toward the majority class and handled all classes more fairly.
+
+| Method                  | Accuracy (Original Data) | Macro F1 | Weighted F1 |
+|-------------------------|--------------------------|----------|--------------|
+| Imbalanced Data (Baseline) | ~83.00%                  | Lower for minority classes | Moderate     |
+| SMOTE (Final Model)        | **86.60%**                | Improved                  | Balanced     |
+
+#### Key Insights
+- Using three quality categories ("not good", "average", and "good") provided a more nuanced and realistic view of wine quality distribution compared to a simple binary classification (e.g., "good" vs. "not good").
+- A binary approach might simplify the modeling process and boost headline accuracy, but it would also result in **loss of valuable granularity**, especially in distinguishing borderline wines (typically the “average” class).
+- Training and testing on three categories helped highlight **class imbalance issues**, which were critical to solve using techniques like **SMOTE**. These problems would be hidden in a binary setup.
+- The model’s ability to separate average wines from both good and poor ones reflects greater precision, especially useful for wine producers or quality control systems aiming for fine-grained decisions rather than just pass/fail.
+- In real-world applications (e.g., quality grading, pricing, recommendation systems), **three-tier classification offers more actionable insights** than a binary prediction.
 
 ### Approach 3 – Multi-class Classification (Quality 3–8)
 Explored wine quality prediction as a **multi-class classification problem**, where each class represents a specific quality score between 3 and 8.
@@ -93,8 +124,13 @@ SMOTE produced better generalization across rare and common classes, especially 
 ### [Teammate Name – Binary Classification]
 
 
-### [Teammate Name – Ternary Classification]
-
+### Yu Huajia (33.3%) - Multi-class Classification ("Not Good", "Average", and "Good")
+- Framed and implemented a multi-class classification task for predicting red wine quality (categorized as not good, average, good)
+- Performed EDA to identify key features and class imbalance issues
+- Applied SMOTE to balance minority classes and improve model fairness
+- Trained and evaluated Random Forest and XGBoost classifiers
+- Compared model performance before and after class balancing
+- Generated evaluation metrics, visualizations, and final model insights
 
 ### Ayushmaan Kumar Yadav (33.3%) – Multi-class Classification (3 to 8)
 - Framed and implemented the multi-class classification task for predicting wine quality scores (3 to 8)
