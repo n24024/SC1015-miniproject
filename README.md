@@ -63,26 +63,6 @@ To tackle this, I applied **SMOTE** (Synthetic Minority Oversampling Technique) 
 
 After comparing both models with and without SMOTE, we observe the following:
 
-- **Random Forest (Imbalanced):**  
-  - **Accuracy:** 87.50%  
-  - **Macro F1:** 0.54  
-  - Excels at overall accuracy but fails to predict the smallest “Not Good” class (F1=0.00).
-
-- **XGBoost (Imbalanced):**  
-  - **Accuracy:** 86.56%  
-  - **Macro F1:** 0.58  
-  - Slightly lower accuracy than RF, but a better balance across classes.
-
-- **Random Forest + SMOTE:**  
-  - **Accuracy:** 83.75%  
-  - **Macro F1:** 0.65  
-  - Best macro F1 of all models—indicating the most even performance on “Not Good”, “Average”, and “Good” classes.
-
-- **XGBoost + SMOTE:**  
-  - **Accuracy:** 84.69%  
-  - **Macro F1:** 0.61  
-  - Highest accuracy among balanced models, with good macro F1—an excellent trade‑off between fairness and overall correctness.
-
 | Model                      | Accuracy | Macro F1 | Weighted F1 |
 |---------------------------|----------|----------|--------------|
 | Random Forest (Imbalanced) | **87.50%** | 0.54     | 0.86         |
