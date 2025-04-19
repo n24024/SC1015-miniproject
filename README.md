@@ -39,7 +39,31 @@ Across the three approaches, the general process followed was:
 
 ## Results Summary
 
-### Approach 1
+### Approach 1 - Binary Classification ("Good" vs. "Not Good")
+I framed the wine quality prediction task as a binary classification problem, simplifying the original quality scores (3–8) into two classes:
+
+"Good" wines (quality ≥ 7)
+
+"Not Good" wines (quality < 7)
+
+This setup reflects a more practical real-world use case — such as filtering wines for recommendation engines or labeling them for consumer-facing platforms.
+
+#### Step 1: Exploratory Data Analysis (EDA)
+I began with data cleaning, checking for null values (none were found), and understanding the distribution of the quality scores. By binarizing the target, I revealed a significant class imbalance: only ~13% of the wines were labeled as "Good."
+Through visualizations like histograms and a correlation heatmap, I identified alcohol as the most positively correlated feature with wine quality, while volatile acidity showed a negative relationship. These patterns provided intuition for model training.
+
+#### Step 2: Baseline Classification with Imbalanced Data
+I trained a baseline Random Forest classifier on the original imbalanced dataset. While it achieved decent overall accuracy (~88%), the recall for the "Good" class was poor — showing that the model favored the majority class.
+This confirmed that class imbalance was hurting the model's ability to detect high-quality wines, especially in a real-world scenario where those are the most important to identify.
+
+#### Step 3: Random Oversampling
+To address this, I applied random upsampling to the training data by duplicating "Good" wine samples until both classes were balanced. After re-training the model, performance on the minority class improved significantly — especially recall and F1-score — showing that the model was now more sensitive to identifying high-quality wines.
+
+#### Step 4: Final Evaluation
+I compared the model’s performance before and after upsampling using accuracy, precision, recall, and confusion matrices.
+While overall accuracy remained stable, the balanced model offered far better performance on the “Good” class, proving that even basic oversampling techniques can yield much fairer and more reliable classifiers in binary classification problems.
+
+
 
 ### Approach 2 - Multi-class Classification ("Not Good", "Average", and "Good")
 Explored red wine quality prediction as a multi-class classification problem, where each wine sample was categorized into three quality levels: 
@@ -128,7 +152,14 @@ SMOTE produced better generalization across rare and common classes, especially 
 ## Contributions
 
 ### [Teammate Name – Binary Classification]
-
+### Diego (33.3%) – Binary Classification ("Good" vs. "Not Good")
+- Framed and implemented a binary classification task for predicting red wine quality (Good ≥ 7, Not Good < 7)
+- Performed EDA to explore class imbalance and key feature correlations (notably alcohol and volatile acidity)
+- Trained and evaluated Random Forest classifier on the imbalanced dataset
+- Applied random oversampling to balance classes and improve minority class performance
+- Compared evaluation metrics (accuracy, recall, F1-score) before and after resampling
+- Generated supporting visualizations and interpretation of model behavior for both setups
+- Got the dataset
 
 ### Yu Huajia (33.3%) - Multi-class Classification ("Not Good", "Average", and "Good")
 - Framed and implemented a multi-class classification task for predicting red wine quality (categorized as not good, average, good)
