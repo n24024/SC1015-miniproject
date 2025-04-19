@@ -52,22 +52,45 @@ I first started by exploring the red wine dataset as a multi-class classificatio
 
 #### Step 2: Baseline Classification with Imbalanced Data
 Then, I built a baseline using Trained Random Forest and XGBoost classifiers on the original (imbalanced) dataset:
-- Achieved decent accuracy **(~83%)** but performance was skewed toward the majority class ("average")
+- Achieved decent accuracy **(~87%)** but performance was skewed toward the majority class ("average")
 - Minority classes ("not good" and "good") had **lower recall** and **F1-scores**
 - Indicated a need to address class imbalance for fairer predictions
 
 #### Step 3: SMOTE (Synthetic Minority Oversampling Technique)
 To tackle this, I applied **SMOTE** (Synthetic Minority Oversampling Technique) to generate synthetic samples for the minority classes in the training set. Unlike random oversampling, SMOTE creates more diverse data points, reducing overfitting and improving generalization.
 
-#### Step 4: Final Model Evaluation
-After retraining the models on the SMOTE-balanced data, I observed a significant improvement in performance. The final XGBoost model achieved an accuracy of **84.69%** on the test set, with more balanced precision, recall, and F1-scores across all three quality categories. The confusion matrix confirmed that the model was no longer biased toward the majority class and handled all classes more fairly.
+#### Step 4: Final Model Evaluation
+
+After comparing both models with and without SMOTE, we observe the following:
+
+- **Random Forest (Imbalanced):**  
+  - **Accuracy:** 87.50%  
+  - **Macro F1:** 0.54  
+  - Excels at overall accuracy but fails to predict the smallest “Not Good” class (F1=0.00).
+
+- **XGBoost (Imbalanced):**  
+  - **Accuracy:** 86.56%  
+  - **Macro F1:** 0.58  
+  - Slightly lower accuracy than RF, but a better balance across classes.
+
+- **Random Forest + SMOTE:**  
+  - **Accuracy:** 83.75%  
+  - **Macro F1:** 0.65  
+  - Best macro F1 of all models—indicating the most even performance on “Not Good”, “Average”, and “Good” classes.
+
+- **XGBoost + SMOTE:**  
+  - **Accuracy:** 84.69%  
+  - **Macro F1:** 0.61  
+  - Highest accuracy among balanced models, with good macro F1—an excellent trade‑off between fairness and overall correctness.
 
 | Model                      | Accuracy | Macro F1 | Weighted F1 |
 |---------------------------|----------|----------|--------------|
-| Random Forest (Imbalanced) | **86.88%** | 0.55     | 0.86         |
+| Random Forest (Imbalanced) | **87.50%** | 0.54     | 0.86         |
 | XGBoost (Imbalanced)       | 86.56%   | **0.58** | 0.86         |
-| Random Forest + SMOTE      | 83.75%   | 0.58     | 0.84         |
-| XGBoost + SMOTE            | 84.69%   | **0.61** | 0.85         |
+| Random Forest + SMOTE      | 83.75%   | **0.65**     | 0.85         |
+| XGBoost + SMOTE            | **84.69%**   | 0.61 | 0.85         |
+
+Overall, **no‑upsampling Random Forest** gives the best raw accuracy but is heavily skewed toward the majority class, whereas **SMOTE‑balanced Random Forest** delivers the most equitable treatment of all three quality levels. **XGBoost + SMOTE** strikes the strongest balance between accuracy and fairness, making it our preferred final model.
 
 ## Key Insights
 
