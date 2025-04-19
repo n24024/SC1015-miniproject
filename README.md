@@ -60,12 +60,14 @@ Then, I built a baseline using Trained Random Forest and XGBoost classifiers on 
 To tackle this, I applied **SMOTE** (Synthetic Minority Oversampling Technique) to generate synthetic samples for the minority classes in the training set. Unlike random oversampling, SMOTE creates more diverse data points, reducing overfitting and improving generalization.
 
 #### Step 4: Final Model Evaluation
-After retraining the models on the SMOTE-balanced data, I observed a significant improvement in performance. The final XGBoost model achieved an accuracy of **86.6%** on the test set, with more balanced precision, recall, and F1-scores across all three quality categories. The confusion matrix confirmed that the model was no longer biased toward the majority class and handled all classes more fairly.
+After retraining the models on the SMOTE-balanced data, I observed a significant improvement in performance. The final XGBoost model achieved an accuracy of **84.69%** on the test set, with more balanced precision, recall, and F1-scores across all three quality categories. The confusion matrix confirmed that the model was no longer biased toward the majority class and handled all classes more fairly.
 
-| Method                  | Accuracy (Original Data) | Macro F1 | Weighted F1 |
-|-------------------------|--------------------------|----------|--------------|
-| Imbalanced Data (Baseline) | ~83.00%                  | Lower for minority classes | Moderate     |
-| SMOTE (Final Model)        | **86.60%**                | Improved                  | Balanced     |
+| Model                      | Accuracy | Macro F1 | Weighted F1 |
+|---------------------------|----------|----------|--------------|
+| Random Forest (Imbalanced) | **86.88%** | 0.55     | 0.86         |
+| XGBoost (Imbalanced)       | 86.56%   | **0.58** | 0.86         |
+| Random Forest + SMOTE      | 83.75%   | 0.58     | 0.84         |
+| XGBoost + SMOTE            | 84.69%   | **0.61** | 0.85         |
 
 ## Key Insights
 
