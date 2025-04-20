@@ -1,4 +1,8 @@
 # Wine Quality Prediction using Machine Learning
+#### Submitted By - FR1-Team 2
+- Ayushmaan Kumar Yadav - N2400848H
+- Yu Huajia - U2322589F
+- Diego Claude - N2402496D
 
 ## Problem Statement
 
@@ -151,7 +155,6 @@ SMOTE produced better generalization across rare and common classes, especially 
 
 ## Contributions
 
-### [Teammate Name – Binary Classification]
 ### Diego (33.3%) – Binary Classification ("Good" vs. "Not Good")
 - Framed and implemented a binary classification task for predicting red wine quality (Good ≥ 7, Not Good < 7)
 - Performed EDA to explore class imbalance and key feature correlations (notably alcohol and volatile acidity)
